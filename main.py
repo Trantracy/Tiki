@@ -69,6 +69,7 @@ if not os.path.isfile('tiki.db'):
             conn.commit()
             
     def get_url(url):
+        # To avoid to be blocked IP
         time.sleep(1)
         try:
             response = requests.get(url).text
@@ -78,6 +79,7 @@ if not os.path.isfile('tiki.db'):
                 print('ERROR BY REQUEST:', err)
 
     def get_main_categories(save_db):
+        # Get the parent categories
         save_db = False
         soup = get_url(TIKI_URL)
 
@@ -97,6 +99,7 @@ if not os.path.isfile('tiki.db'):
     main_categories = get_main_categories(save_db=True)
 
     def get_sub_categories(category, save_db=False):
+        # Get the sub cat
         name = category.name.text
         url = category.url
         result = []
