@@ -97,7 +97,7 @@ if not os.path.isfile('tiki.db'):
     main_categories = get_main_categories(save_db=True)
 
     def get_sub_categories(category, save_db=False):
-        name = category.name
+        name = category.name.text
         url = category.url
         result = []
 
@@ -146,8 +146,9 @@ else:
 
 pd.set_option('colheader_justify', 'center')
 df = pd.read_sql_query("""
-                        SELECT p.id, p.name, p.url, p.parent_id, c.name AS Parent FROM 
-                        categories p LEFT JOIN categories c ON p.parent_id=c.id
+                        SELECT p.id, p.name, p.url, p.parent_id, c.name AS Parent 
+                        FROM categories p 
+                        LEFT JOIN categories c ON p.parent_id=c.id
                         """, conn)
 
 print(df)
