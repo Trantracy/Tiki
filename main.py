@@ -1,14 +1,17 @@
+import os.path
+
 from flask import Flask, render_template, request, redirect
 from bs4 import BeautifulSoup
 from collections import deque
 import requests
 import sqlite3
+import pandas as pd
+import time
+
 
 app = Flask(__name__)
 
-@app.route('/', methods=['GET', 'POST'])
-def index(): 
-
+if not os.path.isfile('tiki.db'):
     TIKI_URL = 'https://tiki.vn'
 
     #Connect to database
@@ -17,7 +20,7 @@ def index():
     cur = conn.cursor()
 
     def create_categories_table():
-    """ Create to database table AUTOINCREMENT: everytime request increase ID+1"""
+        """ Create to database table AUTOINCREMENT: everytime request increase ID+1"""
         query = """
             CREATE TABLE IF NOT EXISTS categories (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -32,9 +35,8 @@ def index():
         except Exception as err:
         # Define the error.
             print('ERROR BY CREATE TABLE', err)
-    create_categories_table()
 
-    cur.execute("INSERT INTO categories (name, url, parent_id) VALUES ('test','test_url', 1);")
+    create_categories_table()
 
     def select_all():
         return cur.execute('SELECT * FROM categories;').fetchall()
@@ -53,7 +55,7 @@ def index():
             return "ID: {}, Name: {}, URL: {}, Parent_id: {}".format(self.cat_id, self.name, self.url, self.parent_id)
 
         def save_into_db(self):
-        # Connect to the database SQL
+            # Connect to the database SQL
             query = """
                 INSERT INTO categories (name, url, parent_id)
                 VALUES (?, ?, ?);
@@ -116,9 +118,6 @@ def index():
 
         return result
 
-    cat = main_categories[0]
-    #get_sub_categories(cat)
-
     # a list from collections import deque
     de = deque([1, 2, 3])
     de.extend([4, 5])
@@ -139,9 +138,18 @@ def index():
                 print(count, 'times')
 
         
-        # get_all_categories(main_categories)
-    return render_template('index.html')
+    get_all_categories(main_categories)
+else:
+    conn = sqlite3.connect('tiki.db')
+    cur = conn.cursor()
 
+df = pd.read_sql_query("""
+                        SELECT * FROM categories;
+                        """, conn)
+
+@app.route('/', methods=['GET', 'POST'])
+def index():
+    return render_template('index.html', data=df.to_html())
 
 if __name__ == '__main__':
   app.run(host='127.0.0.1', port=8000, debug=True)
