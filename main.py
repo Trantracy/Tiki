@@ -66,6 +66,7 @@ if not os.path.isfile('tiki.db'):
                 self.cat_id = cur.lastrowid
             except Exception as err:
                 print('ERROR BY INSERT:', err)
+            conn.commit()
             
     def get_url(url):
         time.sleep(1)
@@ -143,9 +144,13 @@ else:
     conn = sqlite3.connect('tiki.db')
     cur = conn.cursor()
 
+pd.set_option('colheader_justify', 'center')
 df = pd.read_sql_query("""
-                        SELECT * FROM categories;
+                        SELECT p.id, p.name, p.url, p.parent_id, c.name AS Parent FROM 
+                        categories p LEFT JOIN categories c ON p.parent_id=c.id
                         """, conn)
+
+print(df)
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
