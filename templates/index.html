@@ -32,55 +32,53 @@
       </form>
     </div>
   </nav>
-    <main>
-      <!-- landing page-->
-      <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
-          <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
-          <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
-          <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
-        </ol>
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img src="https://englishtown.edu.vn/wp-content/uploads/2019/03/tu-vung-tieng-anh-mua-sam.jpg" class="d-block w-100" alt="...">
-            <div class="carousel-caption d-none d-md-block text-primary">
-              <h1>SHOPPING TIME AT TIKI</h1>
-            </div>
-          </div>      
-        </div>
-        <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
-        </a>
-      </div>
-      <!-- end of landing page-->
-      <div class="container">
-        <div class="row my-5">
-          {{data|safe}}
-        </div>
-      </div>
-    </main>
-    <!-- Footer -->
-    <footer class="bg mt-5 text-white pt-3 pb-3">
-      <div class="container">
-          <div class="row">
-              <div class="col-8">
-                  Tran Corporation<br>
-                  &copy 2020 by Tran<br>
-                  License code: 24242324345 <br>
-              </div>
-              <div class="col-4">
-                  Contact email: tran@abc.com<br>
-                  Phone: 01235678<br>
-                  Location: Sadec, Dong Thap <br>
-              </div>
+    <!-- landing page-->
+    <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+      <ol class="carousel-indicators">
+        <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+        <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="https://englishtown.edu.vn/wp-content/uploads/2019/03/tu-vung-tieng-anh-mua-sam.jpg" class="d-block w-100" alt="...">
+          <div class="carousel-caption d-none d-md-block text-primary">
+            <h1>SHOPPING TIME AT TIKI</h1>
           </div>
+        </div>      
       </div>
-    </footer>
+      <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+    <!-- end of landing page-->
+    <div class="container">
+      <div class="row my-5">
+        {{data|safe}}
+      </div>
+    </div>
+  <!-- Footer -->
+  <footer class="bg mt-5 text-white pt-3 pb-3">
+    <div class="container">
+        <div class="row">
+            <div class="col-8">
+                Tran Corporation<br>
+                &copy 2020 by Tran<br>
+                License code: 24242324345 <br>
+            </div>
+            <div class="col-4">
+                Contact email: tran@abc.com<br>
+                Phone: 01235678<br>
+                Location: Sadec, Dong Thap <br>
+            </div>
+        </div>
+    </div>
+  </footer>
     <!-- End of footer -->    
   </body>
 </html>

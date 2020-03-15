@@ -149,7 +149,7 @@ else:
 
 pd.set_option('colheader_justify', 'center')
 df = pd.read_sql_query("""
-                        SELECT p.id, p.name, p.url, p.parent_id, c.name AS Parent 
+                        SELECT p.id AS ID, p.name AS Product, p.url AS URL, p.parent_id, c.name AS Parent 
                         FROM categories p 
                         LEFT JOIN categories c ON p.parent_id=c.id
                         """, conn)
