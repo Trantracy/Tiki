@@ -1,2 +1,2 @@
 # Tiki
-TiKi web scrapper to take 
+TiKi web scrapper to take the category
