@@ -143,23 +143,6 @@ if not os.path.isfile('tiki.db'):
 
         
     get_all_categories(main_categories)
-
-    def get_products(cat, pages=PAGES, save_db=False):
-        for j in cat:
-            for i in range(1, pages + 1):
-                print(j.url + '&page={}'.format(i))
-                soup = get_url(j.url + '&page={}'.format(i))
-                for a in soup.findAll('div', {'class': 'product-item'}):
-                    product_id = a.attrs['data-seller-product-id']
-                    title = a.attrs['data-title']
-                    price = a.attrs['data-price']
-                    category = a.attrs['data-category']
-
-                    pro = Products(product_id, title, price, category)
-                    if save_db:
-                        pro.save_into_db()
-                    
-    get_products(cat, pages=PAGES, save_db=False)
 else:
     conn = sqlite3.connect('tiki.db')
     cur = conn.cursor()
